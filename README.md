@@ -8,7 +8,7 @@
 ## DATOS DEL CURSO
 
 - Lugar: UNIVERSIDAD CESAR VALLEJO
-- Horario: MIERCOLES DE 07:30 a 12:00 Horas
+- Horario: MIERCOLES DE 13:30 a 18:00 Horas
 - Inicio: 04-SET-2023
 
 
