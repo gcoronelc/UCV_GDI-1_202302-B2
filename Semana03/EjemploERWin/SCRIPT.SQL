@@ -1,0 +1,61 @@
+
+CREATE TABLE dbo.CLIENTE
+( 
+	IDCLIENTE            integer IDENTITY ( 1,1 ) ,
+	NOMBRE               varchar(120)  NOT NULL ,
+	DNI                  varchar(20)  NOT NULL ,
+	EMAIL                varchar(60)  NOT NULL ,
+	CELULAR              varchar(20)  NOT NULL ,
+	CONSTRAINT XPKCLIENTE PRIMARY KEY (IDCLIENTE ASC)
+)
+go
+
+
+
+CREATE TABLE dbo.VENTA
+( 
+	IDVENTA              integer IDENTITY ( 1,1 ) ,
+	FECHA                datetime  NOT NULL ,
+	IMPORTE              numeric(12,2)  NOT NULL ,
+	IMPUESTO             numeric(12,2)  NOT NULL ,
+	TOTAL                numeric(12,2)  NOT NULL ,
+	IDCLIENTE            integer  NOT NULL ,
+	CONSTRAINT XPKVENTA PRIMARY KEY (IDVENTA ASC),
+	CONSTRAINT FK_VENTA_CLIENTE FOREIGN KEY (IDCLIENTE) REFERENCES dbo.CLIENTE(IDCLIENTE)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION
+)
+go
+
+
+
+CREATE TABLE dbo.PRODUCTO
+( 
+	IDPRODUCTO           integer IDENTITY ( 1,1 ) ,
+	NOMBRE               varchar(120)  NOT NULL ,
+	PRECIO               numeric(12,2)  NOT NULL ,
+	STOCK                integer  NOT NULL ,
+	CONSTRAINT XPKPRODUCTO PRIMARY KEY (IDPRODUCTO ASC)
+)
+go
+
+
+
+CREATE TABLE dbo.DETALLE
+( 
+	IDVENTA              integer  NOT NULL ,
+	IDPRODUCTO           integer  NOT NULL ,
+	PRECIO               numeric(12,2)  NOT NULL ,
+	CANTIDAD             integer  NOT NULL ,
+	SUBTOTAL             numeric(12,2)  NOT NULL ,
+	CONSTRAINT XPKDETALLE PRIMARY KEY (IDVENTA ASC,IDPRODUCTO ASC),
+	CONSTRAINT FK_DETALLE_VENTA FOREIGN KEY (IDVENTA) REFERENCES dbo.VENTA(IDVENTA)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION,
+CONSTRAINT FK_DETALLE_PRODUCTO FOREIGN KEY (IDPRODUCTO) REFERENCES dbo.PRODUCTO(IDPRODUCTO)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION
+)
+go
+
+
