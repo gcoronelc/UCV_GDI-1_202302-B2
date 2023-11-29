@@ -27,7 +27,7 @@ go
 
 declare @estado int;
 declare @mensaje varchar(500);
-exec usp_matricula 4, 5, 3, 'NORMAL',3, @estado out, @mensaje out;
+exec usp_matricula 4, 7, 3, 'NORMAL',2, @estado out, @mensaje out;
 print concat('Estado: ',@estado)
 print concat('Mensaje: ',@mensaje);
 go
