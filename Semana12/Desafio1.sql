@@ -1,0 +1,25 @@
+ALTER procedure USP_GPO_01_DESAFIO_01 
+( @COD_PROD int )
+as
+Begin
+	select 
+		p.ProductID [COD.PRODUCTO],
+		P.ProductName [NOMB.PRODUCTO],
+		O.OrderID [NRO.PEDIDO],
+		O.OrderDate [FEC.PEDIDO],
+		O.ShipCountry [PAIS DESTINO],
+		OD.UnitPrice [PRE.UNITARIO],
+		OD.Quantity [CANTIDAD],
+		OD.UnitPrice*OD.Quantity [IMPORTE]
+	from [order details] OD
+	JOIN ORDERS O ON OD.ORDERID= O.ORDERID
+	JOIN PRODUCTS P ON OD.PRODUCTID= P.PRODUCTID
+	WHERE P.PRODUCTID = @COD_PROD
+	ORDER BY 3;
+END;
+GO
+
+
+EXEC USP_GPO_01_DESAFIO_01 5;
+GO
+
