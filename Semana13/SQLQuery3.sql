@@ -1,4 +1,4 @@
-alter procedure usp_matricula
+create procedure usp_matricula
 (
 	@curso int,
 	@alumno int,
@@ -28,6 +28,6 @@ go
 declare @estado int;
 declare @mensaje varchar(500);
 exec usp_matricula 4, 5, 3, 'NORMAL',3, @estado out, @mensaje out;
-print concat("Estado:",@estado)
-print concat("Mensaje:",@mensaje);
+print concat('Estado: ',@estado)
+print concat('Mensaje: ',@mensaje);
 go
